@@ -97,3 +97,13 @@ services:
       - zookeep1
       - zookeep2
       - zookeep3
+
+  order-service:
+      build: ./OrderService
+      container_name: order-service
+      ports:
+        - "8081:8081"
+      depends_on:
+      - kafka1
+      - kafka2
+      - kafka3

@@ -27,4 +27,9 @@ public class OrderController {
         }
 
     }
+
+    @GetMapping("/test")
+    public ResponseEntity<?> test() {
+        return ResponseEntity.ok().build();
+    }
 }

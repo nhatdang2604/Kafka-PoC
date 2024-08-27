@@ -14,4 +14,24 @@ public record OrderDto(
         PAYMENT_AWAITING,
         FAILED,
     }
+
+    @Override
+    public String toString() {
+
+        String term = """
+            OrderDto{
+                transId=:transId,
+                sku=:skus,
+                totalPrice=:totalPrice,
+                state= :state
+            }
+        """;
+
+        term = term.replace(":transId", transId);
+        term = term.replace(":skus", skus.toString());
+        term = term.replace(":totalPrice", totalPrice.toString());
+        term = term.replace(":state", state.toString());
+
+        return term;
+    }
 }
