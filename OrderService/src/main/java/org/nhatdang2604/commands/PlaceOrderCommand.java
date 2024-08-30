@@ -20,6 +20,7 @@ public class PlaceOrderCommand implements Command {
         CreateOrderRequest request = (CreateOrderRequest) args[0];
         String transId = (String) getTransIdCommand.exec();
         OrderDto dto = request.toDto(transId);
+        System.out.println("Attempt to send: " + dto);
         kafkaTemplate.send(dto.transId(), dto);
         return null;
     }

@@ -4,6 +4,7 @@ import org.nhatdang2604.commands.PlaceOrderCommand;
 import org.nhatdang2604.dtos.OrderDto;
 import org.nhatdang2604.requests.CreateOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,9 @@ public class OrderController {
 
     @Autowired
     private PlaceOrderCommand placeOrderCommand;
+
+    @Value(value = "${spring.kafka.bootstrap-servers}")
+    private String bootstrapAddress;
 
     @PostMapping("/")
     public ResponseEntity<?> place(@RequestBody CreateOrderRequest request) {
@@ -30,6 +34,6 @@ public class OrderController {
 
     @GetMapping("/test")
     public ResponseEntity<?> test() {
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(bootstrapAddress);
     }
 }
